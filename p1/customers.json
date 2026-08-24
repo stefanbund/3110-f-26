@@ -1,0 +1,62 @@
+[
+  {
+    "customerId": "CUST-001",
+    "firstName": "Alice",
+    "lastName": "Smith",
+    "email": "alice.smith@example.com",
+    "phone": "555-0101",
+    "address": "123 Maple St",
+    "city": "Springfield",
+    "state": "IL",
+    "zipCode": "62701",
+    "status": "Active"
+  },
+  {
+    "customerId": "CUST-002",
+    "firstName": "Bob",
+    "lastName": "Johnson",
+    "email": "bob.j@example.com",
+    "phone": "555-0102",
+    "address": "456 Oak Ave",
+    "city": "Metropolis",
+    "state": "NY",
+    "zipCode": "10001",
+    "status": "Inactive"
+  },
+  {
+    "customerId": "CUST-003",
+    "firstName": "Carol",
+    "lastName": "Williams",
+    "email": "carol.w@example.com",
+    "phone": "555-0103",
+    "address": "789 Pine Rd",
+    "city": "Gotham",
+    "state": "NJ",
+    "zipCode": "07001",
+    "status": "Active"
+  },
+  {
+    "customerId": "CUST-004",
+    "firstName": "David",
+    "lastName": "Brown",
+    "email": "dbrown@example.com",
+    "phone": "555-0104",
+    "address": "321 Elm St",
+    "city": "Star City",
+    "state": "CA",
+    "zipCode": "90210",
+    "status": "Active"
+  },
+  {
+    "customerId": "CUST-005",
+    "firstName": "Eve",
+    "lastName": "Davis",
+    "email": "eve.davis@example.com",
+    "phone": "555-0105",
+    "address": "654 Birch Blvd",
+    "city": "Central City",
+    "state": "OH",
+    "zipCode": "43215",
+    "status": "Pending"
+  }
+]
