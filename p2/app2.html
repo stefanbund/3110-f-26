@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App 2 - DOM Manipulation</title>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 40px;
+    }
+    h1 {
+      color: #bb86fc;
+      text-align: center;
+    }
+    .instruction {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    /* Styling for the customer data rendered to the page */
+    #customer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .customer-card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    .customer-card h2 {
+      margin: 0 0 10px 0;
+      color: #03dac6;
+      font-size: 1.4rem;
+    }
+    .customer-card p {
+      margin: 5px 0;
+      color: #b0b0b0;
+    }
+    .customer-card .status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    .status-active { background-color: #1b5e20; color: #a5d6a7; }
+    .status-inactive { background-color: #b71c1c; color: #ef9a9a; }
+    .status-pending { background-color: #f57f17; color: #fff59d; }
+  </style>
+</head>
+<body>
+  <h1>Customer Directory</h1>
+  <div class="instruction">
+    <p>This version prints the JSON data to both the Developer Console AND dynamically builds HTML elements on the page.</p>
+  </div>
+  
+  <!-- This is the container where our JavaScript will insert the new divs -->
+  <div id="customer-container"></div>
+  
+  <script src="app2.js"></script>
+</body>
+</html>
