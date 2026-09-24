@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App 7 - Images & Disclosure Pattern</title>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 40px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+    }
+    h1 {
+      color: #bb86fc;
+      margin: 0;
+    }
+    .instruction {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      margin-bottom: 30px;
+      text-align: center;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Buttons */
+    .btn-primary {
+      padding: 12px 20px;
+      background-color: #bb86fc;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { background-color: #9965f4; }
+    
+    .btn-secondary {
+      padding: 12px 20px;
+      background-color: #555;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-secondary:hover { background-color: #777; }
+    
+    .action-btn {
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .edit-btn { background-color: #03dac6; }
+    .edit-btn:hover { background-color: #018786; color: #fff; }
+    .delete-btn { background-color: #cf6679; }
+    .delete-btn:hover { background-color: #b33951; color: #fff; }
+
+    /* Customer Cards */
+    #customer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .customer-card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      position: relative;
+      display: flex; /* Flex layout to align image and text */
+      gap: 20px;
+      align-items: center;
+    }
+    .customer-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #333;
+    }
+    .card-content {
+      flex: 1;
+    }
+    .customer-card h3 {
+      margin: 0 0 10px 0;
+      color: #03dac6;
+      font-size: 1.4rem;
+    }
+    .customer-card p {
+      margin: 5px 0;
+      color: #b0b0b0;
+    }
+    .status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    .status-active { background-color: #1b5e20; color: #a5d6a7; }
+    .status-inactive { background-color: #b71c1c; color: #ef9a9a; }
+    .status-pending { background-color: #f57f17; color: #fff59d; }
+    .card-actions {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Modal Form Styling */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .modal-content h2 {
+      grid-column: 1 / -1;
+      margin-top: 0;
+      color: #03dac6;
+      font-size: 1.5rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .input-group.full-width {
+      grid-column: 1 / -1;
+    }
+    .input-group label {
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      color: #b0b0b0;
+    }
+    .input-group input, .input-group select {
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background-color: #2c2c2c;
+      color: #fff;
+    }
+    .modal-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="instruction">
+    <p>Version 7: Images & URL Parameters! Each customer now has an avatar. Click "View Details" to send data to a new page via the URL.</p>
+  </div>
+
+  <div class="header">
+    <h1>Customer Directory</h1>
+    <button class="btn-primary" onclick="openModal()">+ Add Customer</button>
+  </div>
+
+  <div id="customer-container"></div>
+  
+  <!-- Unified Modal Form -->
+  <div id="customerModal" class="modal-overlay">
+    <div class="modal-content">
+      <h2 id="modalTitle">Add / Edit Customer</h2>
+      
+      <!-- New field for Image URL -->
+      <div class="input-group full-width">
+        <label>Avatar Image URL</label>
+        <input type="text" id="formImageUrl" placeholder="https://i.pravatar.cc/150?img=1">
+      </div>
+
+      <div class="input-group">
+        <label>Customer ID</label>
+        <input type="text" id="formId">
+      </div>
+      <div class="input-group">
+        <label>Status</label>
+        <select id="formStatus">
+          <option value="Active">Active</option>
+          <option value="Pending">Pending</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>First Name</label>
+        <input type="text" id="formFirstName">
+      </div>
+      <div class="input-group">
+        <label>Last Name</label>
+        <input type="text" id="formLastName">
+      </div>
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="formEmail">
+      </div>
+      <div class="input-group">
+        <label>Phone</label>
+        <input type="text" id="formPhone">
+      </div>
+      <div class="input-group full-width">
+        <label>Address</label>
+        <input type="text" id="formAddress">
+      </div>
+      <div class="input-group">
+        <label>City</label>
+        <input type="text" id="formCity">
+      </div>
+      <div class="input-group">
+        <label>State</label>
+        <input type="text" id="formState">
+      </div>
+      <div class="input-group">
+        <label>Zip Code</label>
+        <input type="text" id="formZipCode">
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="saveCustomer()">Save Customer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app7.js"></script>
+</body>
+</html>
